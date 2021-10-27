@@ -1,0 +1,21 @@
+{
+    "name": "jiujiude/wx-pay-ecommerce",
+    "description": "电商收付通V3版本SDK",
+    "type": "library",
+    "require": {
+        "php": ">=7.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jiujiude",
+            "email": "393210556@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "WxPayEcommerce\\": "src/"
+        }
+    }
+}
