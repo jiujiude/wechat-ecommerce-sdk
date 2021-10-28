@@ -12,6 +12,7 @@ use WxPayEcommerce\WxPayv3Exception;
 require_once '../vendor/autoload.php';
 
 try {
+    //test
     $obj = new Apply();
     $obj->applyment([]);
 } catch (WxPayv3Exception $th) {
