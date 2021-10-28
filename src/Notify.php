@@ -1,6 +1,6 @@
 <?php
 
-namespace WxPayEcommerce;
+namespace WechatEcommerce;
 
 //回调数据验证 验证签名 返回数据
 class Notify

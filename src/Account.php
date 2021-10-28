@@ -1,11 +1,11 @@
 <?php
 
-namespace WxPayEcommerce;
+namespace WechatEcommerce;
 
 /**
  * 分账功能
  * Class Account
- * @package WxPayEcommerce
+ * @package WechatEcommerce
  */
 class Account
 {

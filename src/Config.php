@@ -1,6 +1,6 @@
 <?php
 
-namespace WxPayEcommerce;
+namespace WechatEcommerce;
 
 /**
  * 配置信息

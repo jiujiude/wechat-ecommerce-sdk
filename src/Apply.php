@@ -1,6 +1,6 @@
 <?php
 
-namespace WxPayEcommerce;
+namespace WechatEcommerce;
 
 //商户进件 SDK
 //分普通服务商 也就是特约 和 电商收付通的二级商户

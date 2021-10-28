@@ -1,6 +1,6 @@
 <?php
 
-namespace WxPayEcommerce;
+namespace WechatEcommerce;
 
 //查询余额 账单下载
 class Bill
