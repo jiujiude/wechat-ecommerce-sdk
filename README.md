@@ -20,5 +20,5 @@
 
 ##### 安装方法
 
-    composer require jiujiude/wx-pay-ecommerce
+    composer require jiujiude/wechat-ecommerce-sdk
 
