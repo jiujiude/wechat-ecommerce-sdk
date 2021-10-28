@@ -35,7 +35,7 @@ class Uploads
         $out .= 'Content-Type: application/json' . "\r\n";
         $out .= "\r\n";
         $out .= json_encode($meta) . "\r\n";
-        $out .=  $boundaryStr;
+        $out .= $boundaryStr;
         $out .= 'Content-Disposition: form-data; name="file"; filename="' . $data['filename'] . '"' . "\r\n";
         $out .= 'Content-Type: ' . $mime_type . ';' . "\r\n";
         $out .= "\r\n";

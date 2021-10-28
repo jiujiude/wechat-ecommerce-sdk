@@ -7,8 +7,8 @@ namespace WxPayEcommerce;
  * Class Account
  * @package WxPayEcommerce
  */
-class Account{
-
+class Account
+{
     /**-----------------------分账接口
      * 包括：请求分账，查询分账结果，请求分账回退，查询分账回退，完结分账，添加分账接收方，删除分账接收方，分账动账通知
      */
@@ -24,7 +24,7 @@ class Account{
     {
         $url = 'https://api.mch.weixin.qq.com/v3/ecommerce/profitsharing/receivers/add';
         $post = [
-            'appid' => Config::COMBINE_APPID,
+            'appid' => Config::$config['COMBINE_APPID'],
             'type' => $type,
             'account' => $account,
             'relation_type' => $relation_type  //SUPPLIER：供应商 DISTRIBUTOR：分销商 SERVICE_PROVIDER：服务商 PLATFORM：平台 OTHERS：其他
@@ -52,7 +52,7 @@ class Account{
     {
         $url = 'https://api.mch.weixin.qq.com/v3/ecommerce/profitsharing/receivers/delete';
         $post = [
-            'appid' => Config::COMBINE_APPID,
+            'appid' => Config::$config['COMBINE_APPID'],
             'type' => $type,
             'account' => $account
         ];
@@ -73,7 +73,7 @@ class Account{
     {
         $url = 'https://api.mch.weixin.qq.com/v3/ecommerce/profitsharing/orders';
         $post = [
-            'appid' => Config::COMBINE_APPID,
+            'appid' => Config::$config['COMBINE_APPID'],
             'out_order_no' => $out_order_no,
             'transaction_id' => $transaction_id,
             'sub_mchid' => $sub_mchid,
@@ -132,8 +132,15 @@ class Account{
      * @param int  amount 回退金额
      * @param string description 回退描述
      */
-    public function returnAccount($sub_mchid, $order_id, $out_order_no, $out_return_no, $return_mchid, $amount, $description)
-    {
+    public function returnAccount(
+        $sub_mchid,
+        $order_id,
+        $out_order_no,
+        $out_return_no,
+        $return_mchid,
+        $amount,
+        $description
+    ) {
         $url = 'https://api.mch.weixin.qq.com/v3/ecommerce/profitsharing/returnorders';
         $post = [
             'sub_mchid' => $sub_mchid,

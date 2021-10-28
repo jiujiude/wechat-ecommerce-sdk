@@ -129,11 +129,11 @@ class Signs
         }
 
         //发起请求的商户（包括直连商户、服务商或渠道商）的商户号mchid
-        $merchant_id    =  Config::MCHID;
+        $merchant_id = Config::$config['MCHID'];
         //商户API证书序列号
-        $serial_no      =  Config::SERIAL_NO;
+        $serial_no = Config::$config['SERIAL_NO'];
         //获取私钥
-        $mch_private_key = self::getPrivateKey(getcwd() . Config::SSLKEY_PATH);       //商户私钥
+        $mch_private_key = self::getPrivateKey(getcwd() . Config::$config['SSLKEY_PATH']);       //商户私钥
 
         $url_parts = parse_url($url);
 
@@ -141,9 +141,7 @@ class Signs
         if ($http_method == 'GET') {
             $body = '';
         }
-        $message =
-            $http_method . "\n" .
-            $canonical_url . "\n" .
+        $message = $http_method . "\n" . $canonical_url . "\n" .
             $timestamp . "\n" .
             $nonce . "\n" .
             $body . "\n";
@@ -195,12 +193,8 @@ class Signs
         if (!in_array('sha256WithRSAEncryption', \openssl_get_md_methods(true))) {
             throw new WxPayv3Exception("当前PHP环境不支持SHA256withRSA");
         }
-        $mch_private_key = self::getPrivateKey(getcwd() . Config::SSLKEY_PATH);       //商户私钥
-        $message =
-            $appid . "\n" .
-            $timestamp . "\n" .
-            $nonceStr . "\n" .
-            $body . "\n";
+        $mch_private_key = self::getPrivateKey(getcwd() . Config::$config['SSLKEY_PATH']);       //商户私钥
+        $message = $appid . "\n" . $timestamp . "\n" . $nonceStr . "\n" . $body . "\n";
         openssl_sign($message, $raw_sign, $mch_private_key, 'sha256WithRSAEncryption');
         $paySign = base64_encode($raw_sign);
         return $paySign;
@@ -236,7 +230,7 @@ class Signs
     public static function getEncrypt($str)
     {
         //$public_key_path = '证书地址'; //看情况使用证书， 个别接口证书 使用的是 平台证书而不是 api证书
-        $mch_public_key = self::getCertificate(getcwd() . Config::SSLCERT_PATH);
+        $mch_public_key = self::getCertificate(getcwd() . Config::$config['SSLCERT_PATH']);
 
         $encrypted = '';
 
@@ -256,7 +250,7 @@ class Signs
     {
         $result = false;
         $str = base64_decode($str);
-        $mch_private_key = self::getPrivateKey(getcwd() . Config::SSLKEY_PATH);
+        $mch_private_key = self::getPrivateKey(getcwd() . Config::$config['SSLKEY_PATH']);
         if (openssl_private_decrypt($str, $result, $mch_private_key, OPENSSL_PKCS1_OAEP_PADDING)) {
             return $result;
         } else {
@@ -274,7 +268,7 @@ class Signs
      */
     public static function decryptToString($associatedData, $nonceStr, $ciphertext)
     {
-        $aesKey = Config::APPKERV3;
+        $aesKey = Config::$config['APPKERV3'];
         if (strlen($aesKey) != 32) {
             throw new WxPayv3Exception('无效的ApiV3Key，长度应为32个字节');
         }

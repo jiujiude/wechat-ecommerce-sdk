@@ -4,17 +4,18 @@ namespace WxPayEcommerce;
 
 //商户进件 SDK
 //分普通服务商 也就是特约 和 电商收付通的二级商户
-class Apply{
+class Apply
+{
 
     /*****************************************************收付通二级商户进件* */
     /**[applyment 二级商户进件]
-     * 
+     *
      * 电商平台，可使用该接口，帮助其二级商户进件成为微信支付商户。
      * out_request_no string 业务申请编号
-     * organization_type  int 主体类型 
+     * organization_type  int 主体类型
      * business_license_info obj 营业执照/登记证书信息 (小微/个人卖家不填，个体工商户/企业上传营业执照，党政、机关及事业单位/其他组织 登记证书)
-     *     business_license_copy string 证件扫描件 先上传图片生成好的MediaID 
-     *     business_license_number string 证件注册号	
+     *     business_license_copy string 证件扫描件 先上传图片生成好的MediaID
+     *     business_license_number string 证件注册号
      *     merchant_name string 商户名称
      *     legal_person  string 经营者/法定代表人姓名
      *     company_address string 注册地址（选填）
@@ -22,7 +23,7 @@ class Apply{
      * organization_cert_info obj 组织机构代码证信息  主体为“企业/党政、机关及事业单位/其他组织”，且营业执照/登记证书号码不是18位时必填。
      *     organization_copy string 组织机构代码证照片 上传图片生成好的MediaID。
      *     organization_number string 组织机构代码
-     *     organization_time string 组织机构代码有效期限	
+     *     organization_time string 组织机构代码有效期限
      * id_doc_type string 经营者/法人证件类型 （非必填）
      *      1、主体为“小微/个人卖家”，可选择：身份证。
      *      2、主体为“个体户/企业/党政、机关及事业单位/其他组织”，可选择：以下任一证件类型。
@@ -35,29 +36,29 @@ class Apply{
      *      IDENTIFICATION_TYPE_TAIWAN：中国台湾居民–来往大陆通行证
      * id_card_info obj 经营者/法人身份证信息  请填写经营者/法人的身份证信息  证件类型为“身份证”时填写
      *      id_card_copy  string 身份证人像面照片 请上传经营者/法定代表人的身份证人像面照片 MediaID
-     *      id_card_national  string 身份证国徽面照片	 MediaID
+     *      id_card_national  string 身份证国徽面照片     MediaID
      *      id_card_name string 身份证姓名 加密处理
      *      id_card_number string 身份证号码 加密处理
-     *      id_card_valid_time string 身份证有效期限	
+     *      id_card_valid_time string 身份证有效期限
      * id_doc_info obj 经营者/法人其他类型证件信息 证件类型为“来往内地通行证、来往大陆通行证、护照”时填写。
      *      id_doc_name  string 证件姓名
      *      id_doc_number  string 证件号码
-     *      id_doc_copy string 证件照片	 MediaID
+     *      id_doc_copy string 证件照片     MediaID
      *      doc_period_end string证件结束日期
-     * need_account_info bool  是否填写结算银行账户 
+     * need_account_info bool  是否填写结算银行账户
      * account_info obj  结算银行账户 当 need_account_info为true时，这边必填
      *      bank_account_type  string 账户类型 （74,75）
      *      account_bank string 开户银行
      *      account_name string 开户名称
-     *      bank_address_code string 开户银行省市编码	省区市编号
+     *      bank_address_code string 开户银行省市编码    省区市编号
      *      bank_branch_id string 开户银行联行号 17家直连银行无需填写，如为其他银行，开户银行全称（含支行）和开户银行联行号二选一。
      *      bank_name string string 开户银行全称 （含支行)   17家直连银行无需填写，如为其他银行，开户银行全称（含支行）和开户银行联行号二选一。
      *      account_number string 银行帐号 加密处理
      * contact_info obj 超级管理员信息  超级管理员需在开户后进行签约
-     *      contact_type string 超级管理员类型	 65 66
+     *      contact_type string 超级管理员类型     65 66
      *      contact_name string 超级管理员姓名 加密处理
      *      contact_id_card_number  string 超级管理员身份证件号码 加密处理 超级管理员签约时，校验微信号绑定的银行卡实名信息，是否与该证件号码一致
-     *      mobile_phone string 超级管理员手机	加密处理
+     *      mobile_phone string 超级管理员手机    加密处理
      *      contact_email string 超级管理员邮箱 需要带@，遵循邮箱格式校验 。 加密处理
      * sales_scene_info obj 店铺信息 必填
      *      merchant_shortname string 商户简称 （48字符内）
@@ -165,7 +166,7 @@ class Apply{
         return Signs::_Postresponse($url, $data);
     }
 
-    /** 
+    /**
      * getSettlement 查询结算账户 收付通
      * 普通服务商（支付机构、银行不可用），可使用本接口查询其进件、已签约的特约商户-结算账户信息（敏感信息掩码）。 该接口可用于核实是否成功修改结算账户信息、及查询系统汇款验证结果。
      * @param string sub_mchid 特约商户号
@@ -179,10 +180,10 @@ class Apply{
         return Signs::_Getresponse($url);
     }
 
-   /****************************************************特约商户进件* */
+    /****************************************************特约商户进件* */
     /**
-     * 特约商户进件 post 
-     * 注意：不是电商收付通的商户进件哦 
+     * 特约商户进件 post
+     * 注意：不是电商收付通的商户进件哦
      */
     public function applymentTY($param = [])
     {
@@ -256,7 +257,7 @@ class Apply{
      * @param string account_type 账户类型 ACCOUNT_TYPE_BUSINESS：对公银行账户 ACCOUNT_TYPE_PRIVATE：经营者个人银行卡
      * @param string account_bank 开户银行（17个银行账户名称）或 其他银行
      * @param string bank_address_code 开户银行省市编码 （省市编码）
-     * @param string bank_name 开户银行全称（含支行） 
+     * @param string bank_name 开户银行全称（含支行）
      * @param string bank_branch_id 开户银行联行号
      * @param string account_number 银行账号 需公钥加密
      */
@@ -290,5 +291,5 @@ class Apply{
         return $ret;
     }
 
-    
+
 }

@@ -3,8 +3,8 @@
 namespace WxPayEcommerce;
 
 //查询余额 账单下载
-class Bill{
-
+class Bill
+{
     /**
      * 查询平台电商的实时余额 fund_type=1 https://api.mch.weixin.qq.com/v3/merchant/fund/balance/{account_type}
      * 查询平台电商的日终余额 fund_type=2 https://api.mch.weixin.qq.com/v3/merchant/fund/dayendbalance/{account_type}
@@ -16,7 +16,7 @@ class Bill{
     {
         $http_url = '';
         $body = '';
-        if (!in_array($account_type,['BASIC','OPERATION','FEES'])) {
+        if (!in_array($account_type, ['BASIC', 'OPERATION', 'FEES'])) {
             throw new WxPayv3Exception('查询的账户类型不存在');
         }
         switch ($fund_type) {
@@ -37,6 +37,7 @@ class Bill{
         $ret = Signs::_Getresponse($http_url, $body);
         return $ret;
     }
+
     /**
      * 查询二级商会的实时余额 fund_type=1 https://api.mch.weixin.qq.com/v3/ecommerce/fund/balance/{sub_mchid}
      * 查询二级商户的日终余额 fund_type=2 https://api.mch.weixin.qq.com/v3/ecommerce/fund/enddaybalance/{sub_mchid}
@@ -90,7 +91,7 @@ class Bill{
         if (!empty($tar_type)) {
             $url .= '&tar_type=' . $tar_type;
         }
-        $ret =Signs::_Getresponse($url);
+        $ret = Signs::_Getresponse($url);
         // return $ret;
         $ret = json_decode($ret, true);
         if (isset($ret['code'])) {
@@ -103,6 +104,26 @@ class Bill{
             throw new WxPayv3Exception('下载出错');
         }
     }
+
+    /**
+     * 申请资金账单
+     * @param array data 申请账单的数组包括
+     * @param string name 文件名称
+     * @param string filepath 保存的文件路径
+     * hash_type  hash_value  download_url
+     */
+    private function saveBillFile($data, $name, $filepath)
+    {
+        $url = $data['download_url'];
+        $ret = Signs::_Getresponse($url);
+        $file = $name . '_' . date('YmdHIs') . '.xlsx';
+        if (file_put_contents(getcwd() . $filepath . $file, $ret)) {
+            return $file;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * 申请资金账单 默认显示的账单下载地址 和hash对比
      * @param string filepath 账单的下载路径
@@ -130,25 +151,6 @@ class Bill{
             return $down;
         } else {
             throw new WxPayv3Exception('下载出错');
-        }
-    }
-
-    /**
-     * 申请资金账单 
-     * @param array data 申请账单的数组包括
-     * @param string name 文件名称
-     * @param string filepath 保存的文件路径
-     * hash_type  hash_value  download_url
-     */
-    private function saveBillFile($data, $name, $filepath)
-    {
-        $url = $data['download_url'];
-        $ret = Signs::_Getresponse($url);
-        $file = $name . '_' . date('YmdHIs') . '.xlsx';
-        if (file_put_contents(getcwd() . $filepath . $file, $ret)) {
-            return $file;
-        } else {
-            return false;
         }
     }
 }
