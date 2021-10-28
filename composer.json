@@ -1,5 +1,5 @@
 {
-    "name": "jiujiude/wx-pay-ecommerce",
+    "name": "jiujiude/wechat-ecommerce-sdk",
     "description": "电商收付通V3版本SDK",
     "type": "library",
     "require": {
