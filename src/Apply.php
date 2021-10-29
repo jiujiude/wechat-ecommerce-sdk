@@ -114,6 +114,7 @@ class Apply
         if (isset($data['account_validation']['account_no'])) {
             $account_no = $data['account_validation']['account_no'];
             $account_no = Signs::getPrivateEncrypt($account_no);
+            $data['account_validation']['account_no'] = $account_no;
         }
         $ret = json_encode($data);
         return $ret;
@@ -139,6 +140,7 @@ class Apply
         if (isset($data['account_validation']['account_no'])) {
             $account_no = $data['account_validation']['account_no'];
             $account_no = Signs::getPrivateEncrypt($account_no);
+            $data['account_validation']['account_no'] = $account_no;
         }
         $ret = json_encode($data);
         return $ret;
@@ -152,7 +154,7 @@ class Apply
     {
 
         if (strlen($param['sub_mchid']) < 8) {
-            throw new Exception('特约商户号:长度最小8个字节');
+            throw new WxPayv3Exception('特约商户号:长度最小8个字节');
         }
         $url = 'https://api.mch.weixin.qq.com/v3/apply4sub/sub_merchants/' . $param['sub_mchid'] . '/modify-settlement';
         if ($param['account_number']) {
@@ -174,7 +176,7 @@ class Apply
     public function getSettlement($sub_mchid)
     {
         if (strlen($sub_mchid) < 8) {
-            throw new Exception('特约商户号:长度最小8个字节');
+            throw new WxPayv3Exception('特约商户号:长度最小8个字节');
         }
         $url = 'https://api.mch.weixin.qq.com/v3/apply4sub/sub_merchants/{sub_mchid}/settlement';
         return Signs::_Getresponse($url);
