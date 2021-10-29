@@ -1,6 +1,6 @@
 <?php
 
-namespace WechatEcommerce;
+namespace jiujiude\WechatEcommerce;
 
 //支付操作：jsapi native，app 小程序 h5  ，以及对于的支付拉起，查询订单，退款
 //目前只有，jsapi 支付和小程序支付，查询订单，退款

@@ -1,6 +1,6 @@
 <?php
 
-namespace WechatEcommerce;
+namespace jiujiude\WechatEcommerce;
 
 //加签，延签，加密，解密，get提交，post提交
 class Signs

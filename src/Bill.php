@@ -1,6 +1,6 @@
 <?php
 
-namespace WechatEcommerce;
+namespace jiujiude\WechatEcommerce;
 
 //查询余额 账单下载
 class Bill

@@ -1,6 +1,6 @@
 <?php
 
-namespace WechatEcommerce;
+namespace jiujiude\WechatEcommerce;
 
 /**
  * 配置信息

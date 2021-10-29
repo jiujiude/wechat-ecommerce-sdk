@@ -6,9 +6,9 @@
  * Time: 11:41
  */
 
-use WechatEcommerce\Apply;
-use WechatEcommerce\Config;
-use WechatEcommerce\WxPayv3Exception;
+use jiujiude\WechatEcommerce\Apply;
+use jiujiude\WechatEcommerce\Config;
+use jiujiude\WechatEcommerce\WxPayv3Exception;
 
 require_once '../vendor/autoload.php';
 
