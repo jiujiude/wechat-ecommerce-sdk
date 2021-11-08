@@ -49,7 +49,7 @@ class Pay
         }
         $paramData = [
             //合单商户appid
-            'combine_appid' => Config::$config['COMBINE_APPID'],
+            'combine_appid' => Config::$config['PUB']['COMBINE_APPID'],
             //合单发起方的appid  示例值：wxd678efh567hg6787
             //合单发起方商户号
             'combine_mchid' => Config::$config['COMBINE_MCHID'],
@@ -85,7 +85,7 @@ class Pay
      */
     public function jsPay($prepay_id)
     {
-        $appid = Config::$config['COMBINE_APPID'];
+        $appid = Config::$config['PUB']['COMBINE_APPID'];
         return Signs::_PayJson($appid, $prepay_id);
     }
 
@@ -95,7 +95,7 @@ class Pay
      */
     public function xcxPay($prepay_id)
     {
-        $appid = Config::$config['XCX_APPID'];
+        $appid = Config::$config['XCX']['COMBINE_APPID'];
         return Signs::_PayJson($appid, $prepay_id);
     }
 

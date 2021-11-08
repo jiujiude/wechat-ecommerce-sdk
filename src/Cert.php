@@ -10,8 +10,8 @@ class Cert
      */
     public static function certificates()
     {
-        if (file_exists(getcwd() . Config::$config['SERIAL_NO_PATH'])) {
-            if ($serial_nos = file_get_contents(getcwd() . Config::$config['SERIAL_NO_PATH'])) {
+        if (file_exists(Config::$config['SERIAL_NO_PATH'])) {
+            if ($serial_nos = file_get_contents(Config::$config['SERIAL_NO_PATH'])) {
                 if ($serial_nos) {
                     $serial_nos = json_decode($serial_nos, true);
                     if (time() < $serial_nos['time']) { //如果 1天缓存未过期，直接使用。
@@ -35,13 +35,13 @@ class Cert
             try {
                 $data1 = Signs::decryptToString($associatedData, $nonceStr, $ciphertext);
                 $serial_no = $r[0]['serial_no'];
-                file_put_contents(getcwd() . '/vendor/wechat3/cert/' . 'apiclient_' . date('Ymd') . '_cert' . '.pem', $data1);
+                file_put_contents(Config::$config['SSLCERT_CACHE_PATH'] . 'apiclient_' . date('Ymd') . '_cert' . '.pem', $data1);
                 unset($serial_nos);
                 $serial_nos = [
                     'time' => time() + 24 * 3600,
                     'serial_no' => $serial_no
                 ];
-                file_put_contents(getcwd() . Config::$config['SERIAL_NO_PATH'], json_encode($serial_nos));
+                file_put_contents(Config::$config['SERIAL_NO_PATH'], json_encode($serial_nos));
             } catch (WxPayv3Exception $th) {
                 throw $th;
             }
