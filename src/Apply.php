@@ -69,25 +69,25 @@ class Apply
     public function applyment($param = [])
     {
         $url = 'https://api.mch.weixin.qq.com/v3/ecommerce/applyments/';
-        if ($param['id_card_info']['id_card_name']) {
+        if (isset($param['id_card_info']['id_card_name'])) {
             $param['id_card_info']['id_card_name'] = Signs::getEncrypt($param['id_card_info']['id_card_name']);
         }
-        if ($param['id_card_info']['id_card_number']) {
+        if (isset($param['id_card_info']['id_card_number'])) {
             $param['id_card_info']['id_card_number'] = Signs::getEncrypt($param['id_card_info']['id_card_number']);
         }
-        if ($param['account_info']['account_number']) {
+        if (isset($param['account_info']['account_number'])) {
             $param['account_info']['account_number'] = Signs::getEncrypt($param['account_info']['account_number']);
         }
-        if ($param['contact_info']['contact_name']) {
+        if (isset($param['contact_info']['contact_name'])) {
             $param['contact_info']['contact_name'] = Signs::getEncrypt($param['contact_info']['contact_name']);
         }
-        if ($param['contact_info']['contact_id_card_number']) {
+        if (isset($param['contact_info']['contact_id_card_number'])) {
             $param['contact_info']['contact_id_card_number'] = Signs::getEncrypt($param['contact_info']['contact_id_card_number']);
         }
-        if ($param['contact_info']['mobile_phone']) {
+        if (isset($param['contact_info']['mobile_phone'])) {
             $param['contact_info']['mobile_phone'] = Signs::getEncrypt($param['contact_info']['mobile_phone']);
         }
-        if ($param['contact_info']['contact_email']) {
+        if (isset($param['contact_info']['contact_email'])) {
             $param['contact_info']['contact_email'] = Signs::getEncrypt($param['contact_info']['contact_email']);
         }
 

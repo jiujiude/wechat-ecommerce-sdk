@@ -17,8 +17,10 @@ class Uploads
 
         $fi = new \finfo(FILEINFO_MIME_TYPE);
         $mime_type = $fi->file($filename);
-        $data['filename'] = time() . rand(1000, 999) . '.' . $mime_type;
-        $meta['filename'] = time() . rand(1000, 999) . '.' . $mime_type;
+
+        $basename = basename($filename);
+        $data['filename'] = $basename;
+        $meta['filename'] = $basename;
         $meta['sha256'] = hash_file('sha256', $filename);
         $boundary = uniqid(); //分割符号
         $date = time();

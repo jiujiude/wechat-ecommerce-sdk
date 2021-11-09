@@ -133,7 +133,7 @@ class Signs
         //商户API证书序列号
         $serial_no = Config::$config['SERIAL_NO'];
         //获取私钥
-        $mch_private_key = self::getPrivateKey(getcwd() . Config::$config['SSLKEY_PATH']);       //商户私钥
+        $mch_private_key = self::getPrivateKey(Config::$config['SSLKEY_PATH']);       //商户私钥
 
         $url_parts = parse_url($url);
 
@@ -141,9 +141,7 @@ class Signs
         if ($http_method == 'GET') {
             $body = '';
         }
-        $message = $http_method . "\n" . $canonical_url . "\n" .
-            $timestamp . "\n" .
-            $nonce . "\n" .
+        $message = $http_method . "\n" . $canonical_url . "\n" . $timestamp . "\n" . $nonce . "\n" .
             $body . "\n";
         openssl_sign($message, $raw_sign, $mch_private_key, 'sha256WithRSAEncryption');
         $sign = base64_encode($raw_sign);
@@ -193,7 +191,7 @@ class Signs
         if (!in_array('sha256WithRSAEncryption', \openssl_get_md_methods(true))) {
             throw new WxPayv3Exception("当前PHP环境不支持SHA256withRSA");
         }
-        $mch_private_key = self::getPrivateKey(getcwd() . Config::$config['SSLKEY_PATH']);       //商户私钥
+        $mch_private_key = self::getPrivateKey(Config::$config['SSLKEY_PATH']);       //商户私钥
         $message = $appid . "\n" . $timestamp . "\n" . $nonceStr . "\n" . $body . "\n";
         openssl_sign($message, $raw_sign, $mch_private_key, 'sha256WithRSAEncryption');
         $paySign = base64_encode($raw_sign);
@@ -223,46 +221,48 @@ class Signs
     }
 
     /**
-     *  [getEncrypt V3敏感信息进行加密]  
+     *  [getEncrypt V3敏感信息进行加密]
      *  使用的是公钥 ok
-     * @param string str要加密的内容 
+     * @param string str要加密的内容
      */
     public static function getEncrypt($str)
     {
         //$public_key_path = '证书地址'; //看情况使用证书， 个别接口证书 使用的是 平台证书而不是 api证书
-        $mch_public_key = self::getCertificate(getcwd() . Config::$config['SSLCERT_PATH']);
+        $mch_public_key = self::getCertificate(Config::$config['PLATFORM_CERT_PATH']);
 
         $encrypted = '';
 
         if (openssl_public_encrypt($str, $encrypted, $mch_public_key, OPENSSL_PKCS1_OAEP_PADDING)) {
-            //base64编码 
+            //base64编码
             $sign = base64_encode($encrypted);
         } else {
             throw new WxPayv3Exception('加密encrypt failed');
         }
         return $sign;
     }
+
     /**
-     * [getPrivateEncrypt V3敏感信息进行解密]  
+     * [getPrivateEncrypt V3敏感信息进行解密]
      * @param string str 需要解密的秘闻 ok
      */
     public static function getPrivateEncrypt($str)
     {
         $result = false;
         $str = base64_decode($str);
-        $mch_private_key = self::getPrivateKey(getcwd() . Config::$config['SSLKEY_PATH']);
+        $mch_private_key = self::getPrivateKey(Config::$config['SSLKEY_PATH']);
         if (openssl_private_decrypt($str, $result, $mch_private_key, OPENSSL_PKCS1_OAEP_PADDING)) {
             return $result;
         } else {
             throw new WxPayv3Exception('解密Encrypt failed');
         }
     }
+
     /**
-     * [decryptToString V3 证书和回调报文解密]  
-     * @param stingr    $aesKey             V3签名
-     * @param string    $associatedData     附加数据包
-     * @param string    $nonceStr           加密使用的随机串初始化向量）
-     * @param string    $ciphertext         Base64编码后的密文
+     * [decryptToString V3 证书和回调报文解密]
+     * @param stingr $aesKey V3签名
+     * @param string $associatedData 附加数据包
+     * @param string $nonceStr 加密使用的随机串初始化向量）
+     * @param string $ciphertext Base64编码后的密文
      *
      * @return string|bool      Decrypted string on success or FALSE on failure
      */

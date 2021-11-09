@@ -28,7 +28,7 @@ try {
         ],
         //分账APPid
         'ACCOUNT' => [
-            'COMBINE_APPID' => 'xxx', // 分账APPid
+            'COMBINE_APPID' => 'xxx', // 分账APPID
         ],
 
         'COMBINE_APPID' => 'xxx', // 默认合单APPID，示例值：1900000109
@@ -39,10 +39,11 @@ try {
         'APPKEY' => 'xxx',    // 合单发起方 key
         'APPKERV3' => 'xxx',  // 合单发起方v3版本key
 
-        'SERIAL_NO_PATH' => getcwd() . '/cert/serial_no.txt', // 网站证书的序列号txt
-        'SSLCERT_PATH' => getcwd() . '/cert/apiclient_cert.pem',// 合单发起方证书(公钥)地址
+        'SSLCERT_PATH' => getcwd() . '/cert/apiclient_cert.pem',// 合单发起方证书(公钥)地址，暂时没用
         'SSLKEY_PATH' => getcwd() . '/cert/apiclient_key.pem',// 合单发起方私钥地址
-        'SSLCERT_CACHE_PATH' => getcwd() . '/cert/',// 合单发起方证书(公钥)缓存地址
+
+        'PLATFORM_SERIAL_NO_PATH' => getcwd() . '/cert/platform_serial_no.txt', // 平台证书的序列号txt
+        'PLATFORM_CERT_PATH' => getcwd() . '/cert/platform_cert.pem', // 平台证书
     ];
     //设置配置
     Config::setConfig($config);

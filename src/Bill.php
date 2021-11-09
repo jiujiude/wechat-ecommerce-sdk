@@ -117,7 +117,7 @@ class Bill
         $url = $data['download_url'];
         $ret = Signs::_Getresponse($url);
         $file = $name . '_' . date('YmdHIs') . '.xlsx';
-        if (file_put_contents(getcwd() . $filepath . $file, $ret)) {
+        if (file_put_contents($filepath . $file, $ret)) {
             return $file;
         } else {
             return false;

@@ -52,7 +52,7 @@ class Notify
     public function Verify($body, $headers)
     {
         $serial_no = Cert::certificates();
-        $mch_public_key = Signs::getCertificate(getcwd() . Config::$config['SSLCERT_PATH']); //获取平台的公钥
+        $mch_public_key = Signs::getCertificate(Config::$config['PLATFORM_CERT_PATH']); //获取平台的公钥
         $head_serial_no = $headers['HTTP_WECHATPAY_SERIAL'];
         if ($serial_no != $head_serial_no) {
             throw new WxPayv3Exception("回调请求证书序列化不一致");
