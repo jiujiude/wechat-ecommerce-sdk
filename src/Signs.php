@@ -141,17 +141,10 @@ class Signs
         if ($http_method == 'GET') {
             $body = '';
         }
-        $message = $http_method . "\n" . $canonical_url . "\n" . $timestamp . "\n" . $nonce . "\n" .
-            $body . "\n";
+        $message = $http_method . "\n" . $canonical_url . "\n" . $timestamp . "\n" . $nonce . "\n" . $body . "\n";
         openssl_sign($message, $raw_sign, $mch_private_key, 'sha256WithRSAEncryption');
         $sign = base64_encode($raw_sign);
-        $token = sprintf(
-            'mchid="%s",nonce_str="%s",timestamp="%d",serial_no="%s",signature="%s"',
-            $merchant_id,
-            $nonce,
-            $timestamp,
-            $serial_no,
-            $sign
+        $token = sprintf('mchid="%s",nonce_str="%s",timestamp="%d",serial_no="%s",signature="%s"', $merchant_id, $nonce, $timestamp, $serial_no, $sign
         );
         return $token;
     }
@@ -228,6 +221,7 @@ class Signs
     public static function getEncrypt($str)
     {
         //$public_key_path = '证书地址'; //看情况使用证书， 个别接口证书 使用的是 平台证书而不是 api证书
+        $serial_no = Cert::certificates();
         $mch_public_key = self::getCertificate(Config::$config['PLATFORM_CERT_PATH']);
 
         $encrypted = '';
@@ -240,7 +234,6 @@ class Signs
         }
         return $sign;
     }
-
     /**
      * [getPrivateEncrypt V3敏感信息进行解密]
      * @param string str 需要解密的秘闻 ok

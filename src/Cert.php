@@ -38,7 +38,7 @@ class Cert
                 file_put_contents(Config::$config['PLATFORM_CERT_PATH'], $data1);
                 unset($serial_nos);
                 $serial_nos = [
-                    'time' => time() + 24 * 3600,
+                    'time' => time() + 24 * 3600 * 365,
                     'serial_no' => $serial_no
                 ];
                 file_put_contents(Config::$config['PLATFORM_SERIAL_NO_PATH'], json_encode($serial_nos));
