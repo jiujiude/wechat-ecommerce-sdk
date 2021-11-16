@@ -1,7 +1,13 @@
 {
     "name": "jiujiude/wechat-ecommerce-sdk",
-    "description": "电商收付通V3版本SDK",
+    "description": "PHP微信支付电商收付通V3版本SDK",
     "type": "library",
+    "keywords": [
+        "wechatpay",
+        "ecommerce",
+        "微信支付",
+        "电商收付通"
+    ],
     "require": {
         "php": ">=7.2"
     },
