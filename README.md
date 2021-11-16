@@ -1,6 +1,6 @@
 # wechat-ecommerce-sdk
 
-_PHP电商收付通V3版本SDK_
+_PHP微信支付电商收付通V3版本SDK_
 
 ### 安装方法
 > #### composer require jiujiude/wechat-ecommerce-sdk
