@@ -44,6 +44,18 @@ try {
 
         'PLATFORM_SERIAL_NO_PATH' => getcwd() . '/cert/platform_serial_no.json', // 平台证书的序列号txt
         'PLATFORM_CERT_PATH' => getcwd() . '/cert/platform_cert.pem', // 平台证书
+
+        /**
+         * 注意：SERIAL_NO有2个
+         * 支付或退款成功 微信给的回调的 heater里面 有个证书序列号 wechatpay-serial 这个SERIAL_NO是平台证书的序列号
+         * 构建API请求 Authorization 的时候也有个SERIAL_NO，这个SERIAL_NO是去商户后台，【API安全】=》API证书 查看序列号的那个序列号
+         */
+
+        //支付通知地址
+        'PAY_NOTIFY_URL' => 'http://xxxxx.com/EcommerceNotify/pay.html',
+
+        //退款通知地址
+        'REFUND_NOTIFY_URL' => 'http://xxxxx.com/EcommerceNotify/refund.html',
     ];
     //设置配置
     Config::setConfig($config);

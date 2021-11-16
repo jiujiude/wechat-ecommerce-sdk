@@ -152,7 +152,6 @@ class Apply
      */
     public function modifySettlement($param = [])
     {
-
         if (strlen($param['sub_mchid']) < 8) {
             throw new WxPayv3Exception('特约商户号:长度最小8个字节');
         }
@@ -160,10 +159,17 @@ class Apply
         if ($param['account_number']) {
             $param['account_number'] = Signs::getEncrypt($param['account_number']);
         }
+
         $data = [
-            'sub_mchid' => $param['sub_mchid'],
-            'account_type' => $param['account_type']
+            //'sub_mchid' => strval($param['sub_mchid']),
+            'account_type' => $param['account_type'],
+            'account_bank' => $param['account_bank'],
+            'bank_address_code' => $param['bank_address_code'],
+            'bank_name' => $param['bank_name'] ?? '',
+            'bank_branch_id' => $param['bank_branch_id'] ?? '',
+            'account_number' => $param['account_number'],
         ];
+
         $data = json_encode($data);
         return Signs::_Postresponse($url, $data);
     }
@@ -178,7 +184,7 @@ class Apply
         if (strlen($sub_mchid) < 8) {
             throw new WxPayv3Exception('特约商户号:长度最小8个字节');
         }
-        $url = 'https://api.mch.weixin.qq.com/v3/apply4sub/sub_merchants/{sub_mchid}/settlement';
+        $url = 'https://api.mch.weixin.qq.com/v3/apply4sub/sub_merchants/' . $sub_mchid . '/settlement';
         return Signs::_Getresponse($url);
     }
 

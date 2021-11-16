@@ -76,7 +76,7 @@ class Account
             'appid' => Config::$config['COMBINE_APPID'],
             'out_order_no' => $out_order_no,
             'transaction_id' => $transaction_id,
-            'sub_mchid' => $sub_mchid,
+            'sub_mchid' => strval($sub_mchid),
             'receivers' => $receivers,
             'finish' => $finish
         ];

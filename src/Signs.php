@@ -144,8 +144,7 @@ class Signs
         $message = $http_method . "\n" . $canonical_url . "\n" . $timestamp . "\n" . $nonce . "\n" . $body . "\n";
         openssl_sign($message, $raw_sign, $mch_private_key, 'sha256WithRSAEncryption');
         $sign = base64_encode($raw_sign);
-        $token = sprintf('mchid="%s",nonce_str="%s",timestamp="%d",serial_no="%s",signature="%s"', $merchant_id, $nonce, $timestamp, $serial_no, $sign
-        );
+        $token = sprintf('mchid="%s",nonce_str="%s",timestamp="%d",serial_no="%s",signature="%s"', $merchant_id, $nonce, $timestamp, $serial_no, $sign);
         return $token;
     }
 
