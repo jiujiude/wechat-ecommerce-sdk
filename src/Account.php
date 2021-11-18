@@ -111,7 +111,7 @@ class Account
     {
         $url = 'https://api.mch.weixin.qq.com/v3/ecommerce/profitsharing/finish-order';
         $post = [
-            'sub_mchid' => $sub_mchid,
+            'sub_mchid' => strval($sub_mchid),
             'transaction_id' => $transaction_id,
             'out_order_no' => $out_order_no,
             'description' => $description ?: '分账完结'
