@@ -32,11 +32,11 @@ return [
     'APPKEY' => 'xxx',    // 合单发起方 key
     'APPKERV3' => 'xxx',  // 合单发起方v3版本key
 
-    'SSLCERT_PATH' => getcwd() . '/cert/apiclient_cert.pem',// 合单发起方证书(公钥)地址，暂时没用
-    'SSLKEY_PATH' => getcwd() . '/cert/apiclient_key.pem',// 合单发起方私钥地址
+    'SSLCERT_PATH' => getcwd() . '/../cert/apiclient_cert.pem',// 合单发起方证书(公钥)地址，暂时没用
+    'SSLKEY_PATH' => getcwd() . '/../cert/apiclient_key.pem',// 合单发起方私钥地址
 
-    'PLATFORM_SERIAL_NO_PATH' => getcwd() . '/cert/platform_serial_no.json', // 平台证书的序列号txt
-    'PLATFORM_CERT_PATH' => getcwd() . '/cert/platform_cert.pem', // 平台证书
+    'PLATFORM_SERIAL_NO_PATH' => getcwd() . '/../cert/platform_serial_no.json', // 平台证书的序列号txt
+    'PLATFORM_CERT_PATH' => getcwd() . '/../cert/platform_cert.pem', // 平台证书
 
     /**
      * 注意：SERIAL_NO有2个
