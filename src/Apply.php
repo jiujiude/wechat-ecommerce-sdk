@@ -170,6 +170,13 @@ class Apply
             'account_number' => $param['account_number'],
         ];
 
+        if (empty($param['bank_name']) || !isset($param['bank_name'])) {
+            unset($data['bank_name']);
+        }
+        if (empty($param['bank_branch_id']) || !isset($param['bank_name'])) {
+            unset($data['bank_branch_id']);
+        }
+
         $data = json_encode($data);
         return Signs::_Postresponse($url, $data);
     }
