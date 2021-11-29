@@ -161,12 +161,34 @@ class Signs
         $package = 'prepay_id=' . $prepay_id;
         $paySign = self::paySign($appid, $timestamp, $nonceStr, $package);
         $data = [
-            'appId'    => $appid,
+            'appId' => $appid,
             'timeStamp' => $timestamp,
             'nonceStr' => $nonceStr,
-            'package'  => $package,
+            'package' => $package,
             'signType' => 'RSA',
-            'paySign'  => $paySign
+            'paySign' => $paySign
+        ];
+        return json_encode($data);
+    }
+
+    /**
+     * 吊起支付 封裝
+     * @param string appid App的APPID或者小程序的appid
+     * @param string prepay_id 合单支付返回的prepay_id
+     */
+    public static function _PayAppJson($appid, $prepay_id)
+    {
+        $timestamp = time();
+        $nonceStr = self::createNoncestr();
+        $paySign = self::paySign($appid, $timestamp, $nonceStr, $prepay_id);
+        $data = [
+            'appid' => $appid,
+            'partnerid' => Config::$config['MCHID'],
+            'prepayid' => $prepay_id,
+            'package' => 'Sign=WXPay',
+            'noncestr' => $nonceStr,
+            'timestamp' => $timestamp,
+            'sign' => $paySign
         ];
         return json_encode($data);
     }

@@ -156,7 +156,7 @@ class Pay
     public function appPay($prepay_id)
     {
         $appid = Config::$config['APP']['COMBINE_APPID'];
-        return Signs::_PayJson($appid, $prepay_id);
+        return Signs::_PayAppJson($appid, $prepay_id);
     }
 
     /**
