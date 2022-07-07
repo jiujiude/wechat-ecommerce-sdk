@@ -37,6 +37,9 @@ _PHP微信支付电商收付通V3版本SDK_
 #### src/Withdraw.php
 > #####  商户提现功能
 
+#### src/Banks.php
+> ##### 银行组件能力
+
 #### src/WxPayv3Exception.php
 > ##### 异常接收
 
