@@ -61,9 +61,9 @@ class Banks
      * @author hgq <393210556@qq.com>.
      * @date: 2022/07/07 15:02
      */
-    public function branches($bank_alias_code)
+    public function branches($bank_alias_code, $city_code)
     {
-        $url = "https://api.mch.weixin.qq.com/v3/capital/capitallhh/banks/{$bank_alias_code}/branches?city_code=10&offset=0&limit=200";
+        $url = "https://api.mch.weixin.qq.com/v3/capital/capitallhh/banks/{$bank_alias_code}/branches?city_code={$city_code}&offset=0&limit=200";
         $ret = Signs::_Getresponse($url);
         $ret = json_decode($ret, true);
         return $ret;
