@@ -78,6 +78,9 @@ class Apply
         if (isset($param['account_info']['account_number'])) {
             $param['account_info']['account_number'] = Signs::getEncrypt($param['account_info']['account_number']);
         }
+        if (isset($param['account_info']['account_name'])) {
+            $param['account_info']['account_name'] = Signs::getEncrypt($param['account_info']['account_name']);
+        }
         if (isset($param['contact_info']['contact_name'])) {
             $param['contact_info']['contact_name'] = Signs::getEncrypt($param['contact_info']['contact_name']);
         }
