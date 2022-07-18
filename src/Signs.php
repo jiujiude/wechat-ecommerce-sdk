@@ -23,6 +23,9 @@ class Signs
         $header[] = 'User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36';
         $header[] = 'Accept:application/json';
         $header[] = 'Authorization:WECHATPAY2-SHA256-RSA2048 ' . $sign;
+
+        $serial_nos = Cert::certificates();
+        $header[] = 'Wechatpay-Serial:' . $serial_nos;
         $r = self::_requestGet($url, $body, $header);
         return $r;
     }
