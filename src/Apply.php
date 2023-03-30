@@ -76,7 +76,7 @@ class Apply
         if (isset($param['id_card_info']['id_card_number'])) {
             $param['id_card_info']['id_card_number'] = Signs::getEncrypt($param['id_card_info']['id_card_number']);
         }
-        if (isset($param['id_card_info']['id_card_number'])) {
+        if (isset($param['id_card_info']['id_card_address'])) {
             $param['id_card_info']['id_card_address'] = Signs::getEncrypt($param['id_card_info']['id_card_address']);
         }
         if (isset($param['account_info']['account_number'])) {
