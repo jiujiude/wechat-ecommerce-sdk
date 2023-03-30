@@ -40,6 +40,7 @@ class Apply
      *      id_card_name string 身份证姓名 加密处理
      *      id_card_number string 身份证号码 加密处理
      *      id_card_valid_time string 身份证有效期限
+     *      id_card_address string 身份证地址
      * id_doc_info obj 经营者/法人其他类型证件信息 证件类型为“来往内地通行证、来往大陆通行证、护照”时填写。
      *      id_doc_name  string 证件姓名
      *      id_doc_number  string 证件号码
@@ -74,6 +75,9 @@ class Apply
         }
         if (isset($param['id_card_info']['id_card_number'])) {
             $param['id_card_info']['id_card_number'] = Signs::getEncrypt($param['id_card_info']['id_card_number']);
+        }
+        if (isset($param['id_card_info']['id_card_number'])) {
+            $param['id_card_info']['id_card_address'] = Signs::getEncrypt($param['id_card_info']['id_card_address']);
         }
         if (isset($param['account_info']['account_number'])) {
             $param['account_info']['account_number'] = Signs::getEncrypt($param['account_info']['account_number']);
